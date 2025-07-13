@@ -1,0 +1,49 @@
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    #CONTACT {
+      background: conic-gradient(
+    from 100deg,
+    #ff4d4d,
+    #06ffb6,
+    #ff751a,
+    #ffeb3b,
+    #16ffc9,
+    #ff0202,
+    #4caf50,
+    #2196f3,
+    #ec8700,
+    #9c27b0,
+    #ff4d4d
+  );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 10px;
+      border-radius: 20px;
+      margin: 20px auto;
+      width: fit-content;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .contact{
+      background-color: #4a4040;
+    transform: scale(1.1);
+    padding: 5px;
+    border-radius: 5pc;
+    }
+    .contact img {
+      height: 40px;
+      width: 40px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .contact a:hover img {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  
