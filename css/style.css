@@ -81,7 +81,7 @@ span{
 .lettre {
   text-align: center;
   font-weight: bold;
-  -webkit-animation: messageBienvenue infinite reverse 30s;
+  -webkit-animation: messageBienvenue infinite reverse 10s;
 }
 
 .panier-container-petit {

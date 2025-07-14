@@ -76,15 +76,13 @@
 
 @-webkit-keyframes messageBienvenue {
   0% {
-    color: #52ff26;
-  }
-  
-  15% {
     color: white;
   }
-  
+  15% {
+  color: #fcff17;
+}
   30% {
-    color: #fcff17;
+    color: #52ff26;
   }
   
   45% {
@@ -92,11 +90,11 @@
   }
   
   60%{
-    color: red;
+    color: #FF5300;
   }
   
   75% {
-    color: #0000;
+    color: red;
   }
   
   99% {
