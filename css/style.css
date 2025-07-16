@@ -50,8 +50,8 @@ header {
 }
 
 .contact {
-  -webkit-animation: "scale 5s infinite alternate;
-  background-color: #4a4040;
+  -webkit-animation: scale 5s infinite alternate;
+  background-color: var(--gris-claire);
   transform: scale(1.1);
   padding: 5px;
   border-radius: 5pc;
@@ -281,7 +281,7 @@ section h2 {
   /* Positionne horizontalement au centre */
   transform: translate(-50%, -50%);
   /* Couleur verte avec transparence */
-  background-color: var(--vert-pomme);
+  background-color: var;
   color: var(--blanche);
   padding: 15px;
   border-radius: 7px;
