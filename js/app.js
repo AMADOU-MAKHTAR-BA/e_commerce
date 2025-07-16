@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!sessionStorage.getItem('panier')) {
     sessionStorage.setItem('panier', JSON.stringify([]));
   }
-
+  
   // Initialise le nombre d'articles dans la sessionStorage
   if (!sessionStorage.getItem('nombreArticles')) {
     sessionStorage.setItem('nombreArticles', '0');
   }
-
+  
   // Fonction pour afficher le nombre d'articles au chargement de la page
   function afficherNombreArticles() {
     const nombreArticles = parseInt(sessionStorage.getItem('nombreArticles'), 10);
@@ -16,39 +16,39 @@ document.addEventListener('DOMContentLoaded', () => {
       element.innerHTML = nombreArticles;
     });
   }
-
+  
   // ANIMER LA MESSAGE DE BIENVENUE 
   function animerMessageBienvenue() {
-    var ltrs = document.querySelectorAll(".lettre"); 
-
-  ltrs.forEach((ltr) => {
-    // je divise d'abord chaque mot en lettre 
-    const texte = ltr.textContent.split('');
-    //je récupère le div parent pour y stocker à nouveau mon tableau de lettre 
-    const parent = ltr.parentElement;
-
-    //j'ai plus besoin de lui
-    ltr.remove();
-
-    // Créer et insérer chaque lettre dans mon HTML : DOM
+    var ltrs = document.querySelectorAll(".lettre");
     
-    
-    
-    texte.forEach((lettre, j) => {
-      const span = document.createElement("span");
-      // Ajoute la lettre au span
-      span.textContent = lettre;
-      // Ajouter les spans dans mon élément parent 
-      parent.appendChild(span);
-      // l'ajout de ma classe d'animation 
-      span.classList.add("lettre");
-      // ajouter mes délai 
-      span.style.animationDelay = `${j * 0.2}s`;
-    }); 
-  });
+    ltrs.forEach((ltr) => {
+      // je divise d'abord chaque mot en lettre 
+      const texte = ltr.textContent.split('');
+      //je récupère le div parent pour y stocker à nouveau mon tableau de lettre 
+      const parent = ltr.parentElement;
+      
+      //j'ai plus besoin de lui
+      ltr.remove();
+      
+      // Créer et insérer chaque lettre dans mon HTML : DOM
+      
+      
+      
+      texte.forEach((lettre, j) => {
+        const span = document.createElement("span");
+        // Ajoute la lettre au span
+        span.textContent = lettre;
+        // Ajouter les spans dans mon élément parent 
+        parent.appendChild(span);
+        // l'ajout de ma classe d'animation 
+        span.classList.add("lettre");
+        // ajouter mes délai 
+        span.style.animationDelay = `${j * 0.2}s`;
+      });
+    });
   }
   animerMessageBienvenue();
-
+  
   // Fonction pour ajouter un produit au panier
   function ajouterAuPanier(produit) {
     const panier = JSON.parse(sessionStorage.getItem('panier'));
@@ -56,16 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem('panier', JSON.stringify(panier));
     afficherMessagePanier("Produit ajouté au panier !");
   }
-
+  
   // Fonction pour afficher le message d'ajout au panier
   function afficherMessagePanier(texte) {
     var messageElement = document.createElement('div');
     messageElement.id = 'message-panier';
     messageElement.textContent = texte;
-
+    
     document.body.appendChild(messageElement);
     messageElement.classList.add('affichage');
-
+    
     setTimeout(() => {
       messageElement.classList.remove('affichage');
       messageElement.classList.add('disparition');
@@ -74,19 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000);
     }, 2500);
   }
-
+  
   // Fonction pour incrémenter le compteur d'articles
   function incrementer_nombre_produit() {
     let contenu_nombre_articles = parseInt(sessionStorage.getItem('nombreArticles'), 10) || 0;
     contenu_nombre_articles += 1;
     sessionStorage.setItem('nombreArticles', contenu_nombre_articles.toString());
-
+    
     // Met à jour l'affichage sur la page
     document.querySelectorAll('.nombre-articles').forEach(element => {
       element.innerHTML = contenu_nombre_articles;
     });
   }
-
+  
   // Boutons "Ajouter au Panier"
   const boutonsAjouter = document.querySelectorAll('.ajouter-au-panier');
   boutonsAjouter.forEach(bouton => {
@@ -100,13 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
       incrementer_nombre_produit();
     });
   });
-
+  
   // Fonction pour afficher le contenu du panier
   function afficherPanier() {
     const panier = JSON.parse(sessionStorage.getItem('panier'));
     const panierElement = document.getElementById('panier-contenu');
     panierElement.innerHTML = '';
-
+    
     if (panier.length === 0) {
       panierElement.innerHTML = '<p id="panier_vide_message">VOTRE PANIER EST POUR LE MOMENT VIDE !!!</p>';
     } else {
@@ -122,13 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
+  
   // contactez moi pour afficher le panier et le nombre d'articles au chargement
   afficherNombreArticles();
   if (document.getElementById('panier-contenu')) {
     afficherPanier();
   }
-
+  
   // Génération du message WhatsApp avec le lien vers le panier
   function genererMessageWhatsApp() {
     const panier = JSON.parse(sessionStorage.getItem('panier'));
@@ -136,24 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
       afficherMessagePanier("CHER CLIENT , VOTRE PANIER EST POUR LE MOMENT VIDE .\n MERCI DE D'ABORD SÉLECTIONNER VOS PRODUITS ");
       return;
     }
-
+    
     const lienPanier = "https://github.com/AMADOU-MAKHTAR-BA/E-COMMERCE.git/panier.html";
     const message = `Bonjour, je souhaite finaliser mon achat. Voici le lien vers mon panier : ${lienPanier}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/221755547333?text=${encodedMessage}`;
     window.open(whatsappURL, '_blank');
   }
-
+  
   // Bouton pour le message WhatsApp
   const whatsappButton = document.querySelector('#whatsapp-button');
   if (whatsappButton) {
     whatsappButton.addEventListener('click', genererMessageWhatsApp);
   }
-
+  
   // Barre de recherche
   const barreRecherche = document.getElementById('barre-recherche');
   const produits = document.querySelectorAll('.produit');
-
+  
   barreRecherche.addEventListener('input', () => {
     const recherche = barreRecherche.value.toLowerCase().trim();
     produits.forEach(produit => {
@@ -161,18 +161,18 @@ document.addEventListener('DOMContentLoaded', () => {
       produit.style.display = nomProduit.includes(recherche) ? '' : 'none';
     });
   });
-
-
-function animationImageContact() {
-
-let contactImage = document.querySelectorAll(".contact");
-// console.log(contactImage);
-const tableauImage = Array.from(contactImage);
-// console.log(tableauImage);
-for(let i=0 ; i<=tableauImage.length ; i++){
-  tableauImage[i].style.animationDelay = i*0.5+"s";
-};
-}
-animationImageContact()
-
-}); 
+  
+  
+  function animationImageContact() {
+    
+    let contactImage = document.querySelectorAll(".contact");
+    // console.log(contactImage);
+    const tableauImage = Array.from(contactImage);
+    // console.log(tableauImage);
+    for (let i = 0; i <= tableauImage.length; i++) {
+      tableauImage[i].style.animationDelay = i * 0.5 + "s";
+    };
+  }
+  animationImageContact()
+  
+});
