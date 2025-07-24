@@ -51,7 +51,6 @@ header {
 
 .contact {
   -webkit-animation: scale 5s infinite alternate;
-  background-color: var(--gris-claire);
   transform: scale(1.1);
   padding: 5px;
   border-radius: 5pc;
