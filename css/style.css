@@ -280,7 +280,7 @@ section h2 {
   /* Positionne horizontalement au centre */
   transform: translate(-50%, -50%);
   /* Couleur verte avec transparence */
-  background-color: var;
+  background-color: var(--rose);
   color: var(--blanche);
   padding: 15px;
   border-radius: 7px;
